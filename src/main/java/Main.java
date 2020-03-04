@@ -4,5 +4,6 @@ public class Main {
 
         System.out.println("HeRb");
         Puzzle puzzle = FileOperations.loadPuzzle("txtFiles/input.txt");
+        System.out.println(puzzle);
     }
 }

@@ -29,4 +29,16 @@ public class Puzzle {
         this.width = width;
         tiles = new int[height][width];
     }
+
+    @Override
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0;i < height;i++){
+            for(int j = 0;j < width;j++){
+                sb.append(String.format("%3s",tiles[i][j]));
+            }
+            sb.append('\n');
+        }
+        return sb.toString();
+    }
 }
