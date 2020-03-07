@@ -6,8 +6,8 @@ import com.opencsv.CSVReaderBuilder;
 import java.io.FileReader;
 import java.util.List;
 
-public class FileOperations
-{
+public class FileOperations {
+
     static public Puzzle loadPuzzle(String filepath) throws java.io.IOException{
         final FileReader fileReader = new FileReader(filepath);
         final CSVParser parser = new CSVParserBuilder()

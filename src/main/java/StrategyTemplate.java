@@ -3,7 +3,8 @@ import lombok.Setter;
 
 public abstract class StrategyTemplate {
 
-    @Setter @Getter private PuzzleState puzzleState;
+    @Getter @Setter
+    private PuzzleState puzzleState;
 
     public StrategyTemplate(PuzzleState state){
         this.puzzleState = state;

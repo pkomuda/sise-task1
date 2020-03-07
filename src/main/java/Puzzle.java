@@ -2,19 +2,24 @@ public class Puzzle {
 
     private int height;
     private int width;
-    private int tiles[][];
+    private int[][] tiles;
 
     public int getHeight() {
         return height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int[][] getTiles() {
+        return tiles;
     }
 
     public void setHeight(int height) {
         this.height = height;
     }
 
-    public int getWidth() {
-        return width;
-    }
 
     public void setWidth(int width) {
         this.width = width;
@@ -27,7 +32,13 @@ public class Puzzle {
     public Puzzle(int height, int width){
         this.height = height;
         this.width = width;
-        tiles = new int[height][width];
+        this.tiles = new int[height][width];
+    }
+
+    public Puzzle(Puzzle other) {
+        this.height = other.getHeight();
+        this.width = other.getWidth();
+        this.tiles = other.getTiles();
     }
 
     @Override
