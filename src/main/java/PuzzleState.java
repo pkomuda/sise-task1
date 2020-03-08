@@ -9,9 +9,8 @@ public @Data class PuzzleState {
     private int solutionLength;
     private String directionsOrder;
     private Puzzle puzzle;
-    private Iterable<PuzzleState> states;
 
-    public PuzzleState(Puzzle puzzle){
+    public PuzzleState(Puzzle puzzle) {
         this.puzzle = puzzle;
         this.visitedStatesCount = 0;
         this.computedStatesCount = 0;
@@ -70,24 +69,20 @@ public @Data class PuzzleState {
         return swapped;
     }
 
-    public PuzzleState move(char direction) throws Exception {
-        if (canMove(direction)) {
-            int x = getZeroCoordinates()[0];
-            int y = getZeroCoordinates()[1];
-            switch(direction) {
-                case 'l':
-                    return new PuzzleState(swapTiles(x, y, x - 1, y));
-                case 'r':
-                    return new PuzzleState(swapTiles(x, y, x + 1, y));
-                case 'u':
-                    return new PuzzleState(swapTiles(x, y, x, y - 1));
-                case 'd':
-                    return new PuzzleState(swapTiles(x, y, x, y + 1));
-                default:
-                    throw new Exception("Wrong direction");
-            }
-        } else {
-            throw new Exception("Cannot move");
+    public PuzzleState move(char direction) {
+        int x = getZeroCoordinates()[0];
+        int y = getZeroCoordinates()[1];
+        switch(direction) {
+            case 'l':
+                return new PuzzleState(swapTiles(x, y, x - 1, y));
+            case 'r':
+                return new PuzzleState(swapTiles(x, y, x + 1, y));
+            case 'u':
+                return new PuzzleState(swapTiles(x, y, x, y - 1));
+            case 'd':
+                return new PuzzleState(swapTiles(x, y, x, y + 1));
+            default:
+                return null;
         }
     }
 }
