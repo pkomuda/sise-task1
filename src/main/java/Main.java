@@ -6,7 +6,10 @@ public class Main {
         Puzzle puzzle = FileOperations.loadPuzzle("txtFiles/input.txt");
         PuzzleState state = new PuzzleState(puzzle);
         System.out.println(state.getPuzzle());
-        System.out.println(state.move('r').getPuzzle());
-        System.out.println(state.move('d').getPuzzle());
+        puzzle.move('r');
+        System.out.println(puzzle);
+        puzzle.move('d');
+        System.out.println(puzzle);
+
     }
 }
