@@ -23,11 +23,11 @@ public abstract class StrategyTemplate {
         solved.setTile(height-1,width-1,0);
     }
 
-    abstract void algorithm();
+    abstract void algorithm(String order);
 
-    public final void runStrategy(){
+    public final void runStrategy(String order){
         long startTime = System.nanoTime();
-        algorithm();
+        algorithm(order);
         solutionState.setCalculationTime((System.nanoTime() - startTime) / 1000000);
     }
 }

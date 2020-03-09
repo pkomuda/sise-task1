@@ -6,14 +6,20 @@ public class Main {
         Puzzle puzzle = FileOperations.loadPuzzle("txtFiles/input.txt");
 
         SolutionState state = new SolutionState(puzzle);
-        System.out.println(state.getPuzzle());
-        puzzle.move('R');
-        System.out.println(puzzle);
-        puzzle.move('D');
-        System.out.println(puzzle);
+//        System.out.println(state.getPuzzle());
+//        puzzle.move('R');
+//        System.out.println(puzzle);
+//        puzzle.move('D');
+//        System.out.println(puzzle);
 
         BFSStrategy bfs = new BFSStrategy(state);
-        System.out.println(bfs.getSolved());
+        bfs.algorithm("RDUL");
 
+//        System.out.println(puzzle);
+//        System.out.println("GENERATED:");
+//        puzzle.generatePuzzles("DRUL");
+//        for (Puzzle p : puzzle.getPossiblePuzzles()) {
+//            System.out.println(p);
+//        }
     }
 }

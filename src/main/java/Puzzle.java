@@ -1,4 +1,6 @@
-import java.lang.reflect.Array;
+import lombok.Getter;
+
+import java.util.ArrayDeque;
 import java.util.Arrays;
 
 public class Puzzle {
@@ -6,6 +8,8 @@ public class Puzzle {
     private int height;
     private int width;
     private int[][] tiles;
+    @Getter
+    ArrayDeque<Puzzle> possiblePuzzles = new ArrayDeque<>();
 
     public int getHeight() {
         return height;
@@ -41,7 +45,7 @@ public class Puzzle {
     public Puzzle(Puzzle other) {
         this.height = other.getHeight();
         this.width = other.getWidth();
-        this.tiles = other.getTiles();
+        this.tiles = Arrays.stream(other.getTiles()).map(int[]::clone).toArray(int[][]::new);
     }
 
     public int[] getZeroCoordinates() {
@@ -60,23 +64,23 @@ public class Puzzle {
     public boolean canMove(char direction) {
         boolean ability = true;
         switch(direction) {
-            case 'l':
+            case 'L':
                 if (getZeroCoordinates()[0] == 0) {
                     ability = false;
                 }
                 break;
-            case 'r':
+            case 'R':
                 if (getZeroCoordinates()[0] == getWidth() - 1) {
                     ability = false;
                 }
                 break;
-            case 'u':
+            case 'U':
                 if (getZeroCoordinates()[1] == 0) {
                     ability = false;
                 }
                 break;
-            case 'd':
-                if (getZeroCoordinates()[0] == getHeight() - 1) {
+            case 'D':
+                if (getZeroCoordinates()[1] == getHeight() - 1) {
                     ability = false;
                 }
                 break;
@@ -109,6 +113,16 @@ public class Puzzle {
             case 'D':
                 swapTiles(x, y, x, y + 1);
                 break;
+        }
+    }
+
+    public void generatePuzzles(String order) {
+        for (char direction : order.toCharArray()) {
+            if (canMove(direction)) {
+                Puzzle other = new Puzzle(this);
+                other.move(direction);
+                possiblePuzzles.add(other);
+            }
         }
     }
 
