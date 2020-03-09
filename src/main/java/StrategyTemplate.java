@@ -1,12 +1,16 @@
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayDeque;
+
+
 @Getter @Setter
 public abstract class StrategyTemplate {
 
     private SolutionState solutionState;
     private Puzzle solved = new Puzzle(4,4); // temp, trzeba będzie generować w zaleznosci od wielkosci
-
+    ArrayDeque<Puzzle> toVisit = new ArrayDeque<>();
+    ArrayDeque<Puzzle> visited = new ArrayDeque<>();
     public StrategyTemplate(SolutionState state)
     {
         this.solutionState = state;

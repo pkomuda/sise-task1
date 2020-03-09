@@ -3,6 +3,7 @@ import lombok.Data;
 public @Data class SolutionState {
 
     private long calculationTime;
+    private boolean solutionFound = false;
     private int visitedStatesCount;
     private int computedStatesCount;
     private int maxDepthReached;

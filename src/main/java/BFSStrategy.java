@@ -6,6 +6,15 @@ public class BFSStrategy extends StrategyTemplate {
 
     @Override
     public void algorithm(){
+        toVisit.add(getSolutionState().getPuzzle());
 
+        while(toVisit.size() > 0){
+            Puzzle checkedState = toVisit.pop()
+             visited.add(checkedState);
+            if (checkedState.equals(getSolved())) {
+                getSolutionState().setSolutionFound(true);
+                break;
+            }
+        }
     }
 }
