@@ -9,7 +9,7 @@ public class BFSStrategy extends StrategyTemplate {
         toVisit.add(getSolutionState().getPuzzle());
 
         while(toVisit.size() > 0){
-            Puzzle checkedState = toVisit.pop()
+            Puzzle checkedState = toVisit.pop();
              visited.add(checkedState);
             if (checkedState.equals(getSolved())) {
                 getSolutionState().setSolutionFound(true);
