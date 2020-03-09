@@ -6,9 +6,9 @@ import java.util.List;
 public class PuzzleStateOperations {
 
 //    @Getter
-//    private List<PuzzleState> states = new ArrayList<>();
+//    private List<SolutionState> states = new ArrayList<>();
 //
-//    public PuzzleStateOperations(PuzzleState initialState) {
+//    public PuzzleStateOperations(SolutionState initialState) {
 //        states.add(initialState);
 //    }
 //

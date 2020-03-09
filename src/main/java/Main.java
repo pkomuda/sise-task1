@@ -5,13 +5,15 @@ public class Main {
     public static void main(String[] args) throws IOException {
         Puzzle puzzle = FileOperations.loadPuzzle("txtFiles/input.txt");
 
-        PuzzleState state = new PuzzleState(puzzle);
+        SolutionState state = new SolutionState(puzzle);
         System.out.println(state.getPuzzle());
-        puzzle.move('r');
+        puzzle.move('R');
         System.out.println(puzzle);
-        puzzle.move('d');
+        puzzle.move('D');
         System.out.println(puzzle);
 
+        BFSStrategy bfs = new BFSStrategy(state);
+        System.out.println(bfs.getSolved());
 
     }
 }

@@ -1,6 +1,6 @@
 import lombok.Data;
 
-public @Data class PuzzleState {
+public @Data class SolutionState {
 
     private long calculationTime;
     private int visitedStatesCount;
@@ -10,7 +10,7 @@ public @Data class PuzzleState {
     private String directionsOrder;
     private Puzzle puzzle;
 
-    public PuzzleState(Puzzle puzzle) {
+    public SolutionState(Puzzle puzzle) {
         this.puzzle = puzzle;
         this.visitedStatesCount = 0;
         this.computedStatesCount = 0;

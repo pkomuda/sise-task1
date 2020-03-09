@@ -97,16 +97,16 @@ public class Puzzle {
         int x = getZeroCoordinates()[0];
         int y = getZeroCoordinates()[1];
         switch(direction) {
-            case 'l':
+            case 'L':
                 swapTiles(x, y, x - 1, y);
                 break;
-            case 'r':
+            case 'R':
                 swapTiles(x, y, x + 1, y);
                 break;
-            case 'u':
+            case 'U':
                 swapTiles(x, y, x, y - 1);
                 break;
-            case 'd':
+            case 'D':
                 swapTiles(x, y, x, y + 1);
                 break;
         }
