@@ -1,3 +1,6 @@
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 public class Puzzle {
 
     private int height;
@@ -119,5 +122,12 @@ public class Puzzle {
             sb.append('\n');
         }
         return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object obj){
+        if(obj.getClass() != getClass()) return false;
+        Puzzle other = (Puzzle) obj;
+        return Arrays.deepEquals(getTiles(),other.getTiles());
     }
 }
