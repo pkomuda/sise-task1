@@ -18,8 +18,9 @@ public abstract class StrategyTemplate {
         int width = solved.getWidth();
         for(int i = 0; i < height; i++)
             for (int j = 0; j < width; j++){
-                solved.setTile(i,j,(height*width-1)-j-(i*solved.getWidth()));
+                solved.setTile(i,j,1+j+(i*width));
             }
+        solved.setTile(height-1,width-1,0);
     }
 
     abstract void algorithm();
