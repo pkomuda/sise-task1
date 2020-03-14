@@ -8,7 +8,7 @@ import java.util.ArrayDeque;
 public abstract class StrategyTemplate {
 
     private SolutionState solutionState;
-    private Puzzle solved = new Puzzle(4,4); // TODO temp, trzeba będzie generować w zaleznosci od wielkosci
+    private Puzzle solved;
     ArrayDeque<Puzzle> toVisit = new ArrayDeque<>();
     ArrayDeque<Puzzle> visited = new ArrayDeque<>();
     protected String previousMoves = "";
@@ -16,6 +16,7 @@ public abstract class StrategyTemplate {
     public StrategyTemplate(SolutionState state)
     {
         this.solutionState = state;
+        solved = new Puzzle(state.getPuzzle().getHeight(),state.getPuzzle().getWidth());
         int height = solved.getHeight();
         int width = solved.getWidth();
         for(int i = 0; i < height; i++)
@@ -31,6 +32,11 @@ public abstract class StrategyTemplate {
         long startTime = System.nanoTime();
         algorithm(order);
         solutionState.setCalculationTime((System.nanoTime() - startTime) / 1000000);
+        try {
+            FileOperations.saveSolutionState("txtFiles/stats",getSolutionState());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void solutionMoves(Puzzle checkedState) {
@@ -43,6 +49,7 @@ public abstract class StrategyTemplate {
         previousMoves = previousMoves.substring(0, previousMoves.length() - 1);
         StringBuilder sb = new StringBuilder(previousMoves);
         sb.reverse();
+        solutionState.setSolutionLength(previousMoves.length());
         sb.insert(0, previousMoves.length() + "\n");
         try {
             FileOperations.saveSolutionMoves("txtFiles/solution.txt", sb.toString());

@@ -13,7 +13,7 @@ public class Main {
 //        System.out.println(puzzle);
 
         BFSStrategy bfs = new BFSStrategy(state);
-        bfs.algorithm("RDUL");
+        bfs.runStrategy("RDUL");
 
 //        System.out.println(puzzle);
 //        System.out.println("GENERATED:");

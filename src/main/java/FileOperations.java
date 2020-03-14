@@ -37,4 +37,10 @@ public class FileOperations {
         fileWriter.write(solutionMoves);
         fileWriter.close();
     }
+
+    static public void saveSolutionState(String filepath, SolutionState ss) throws IOException{
+        final FileWriter fileWriter = new FileWriter(filepath);
+        fileWriter.write(ss.toString());
+        fileWriter.close();
+    }
 }

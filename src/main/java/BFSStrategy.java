@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 public class BFSStrategy extends StrategyTemplate {
 
     public BFSStrategy(SolutionState state) {
@@ -5,16 +7,18 @@ public class BFSStrategy extends StrategyTemplate {
     }
 
     @Override
-    public void algorithm(String order) {
+    public void algorithm(String order){
         toVisit.add(getSolutionState().getPuzzle());
-
+        Puzzle checkedState = null;
         while(toVisit.size() > 0){
-            Puzzle checkedState = toVisit.pop();
+            checkedState = toVisit.pop();
+            if (checkedState.getDepth() > getSolutionState().getMaxDepthReached()){
+                getSolutionState().setMaxDepthReached(checkedState.getDepth());
+            }
             visited.add(checkedState);
             if (checkedState.equals(getSolved())) {
                 System.out.println(checkedState);
                 getSolutionState().setSolutionFound(true);
-                solutionMoves(checkedState);
                 System.out.println(previousMoves);
                 break;
             }
@@ -26,5 +30,10 @@ public class BFSStrategy extends StrategyTemplate {
                 }
             }
         }
+        if(!getSolutionState().isSolutionFound()){
+            getSolutionState().setSolutionLength(-1);
+        }
+        solutionMoves(checkedState);
+
     }
 }

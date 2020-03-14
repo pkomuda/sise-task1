@@ -12,6 +12,7 @@ public @Data class Puzzle {
     private ArrayDeque<Puzzle> possiblePuzzles = new ArrayDeque<>();
     private Puzzle previousPuzzle = null;
     private char previousMove;
+    private int depth;
 
 
     public void setTile(int height, int width, int value){
@@ -22,6 +23,7 @@ public @Data class Puzzle {
         this.height = height;
         this.width = width;
         this.tiles = new int[height][width];
+        this.depth = 0;
     }
 
     public Puzzle(Puzzle other, char direction) {
@@ -30,6 +32,7 @@ public @Data class Puzzle {
         this.tiles = Arrays.stream(other.getTiles()).map(int[]::clone).toArray(int[][]::new);
         this.previousPuzzle = other;
         this.previousMove = direction;
+        this.depth = other.depth + 1;
     }
 
     public int[] getZeroCoordinates() {
