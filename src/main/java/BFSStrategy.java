@@ -12,13 +12,17 @@ public class BFSStrategy extends StrategyTemplate {
             Puzzle checkedState = toVisit.pop();
             visited.add(checkedState);
             if (checkedState.equals(getSolved())) {
+                System.out.println(checkedState);
                 getSolutionState().setSolutionFound(true);
+                solutionMoves(checkedState);
+                System.out.println(previousMoves);
                 break;
             }
             checkedState.generatePuzzles(order);
             for (Puzzle p : checkedState.getPossiblePuzzles()) {
                 if (!visited.contains(p)) {
                     toVisit.add(p);
+                    System.out.println(p);
                 }
             }
         }

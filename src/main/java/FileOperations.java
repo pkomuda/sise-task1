@@ -4,6 +4,8 @@ import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 
 public class FileOperations {
@@ -28,5 +30,11 @@ public class FileOperations {
             }
         }
         return puzzle;
+    }
+
+    static public void saveSolutionMoves(String filepath, String solutionMoves) throws IOException {
+        final FileWriter fileWriter = new FileWriter(filepath);
+        fileWriter.write(solutionMoves);
+        fileWriter.close();
     }
 }

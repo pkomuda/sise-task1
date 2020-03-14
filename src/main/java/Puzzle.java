@@ -1,36 +1,18 @@
+import lombok.Data;
 import lombok.Getter;
 
 import java.util.ArrayDeque;
 import java.util.Arrays;
 
-public class Puzzle {
+public @Data class Puzzle {
 
     private int height;
     private int width;
     private int[][] tiles;
-    @Getter
-    ArrayDeque<Puzzle> possiblePuzzles = new ArrayDeque<>();
+    private ArrayDeque<Puzzle> possiblePuzzles = new ArrayDeque<>();
+    private Puzzle previousPuzzle = null;
+    private char previousMove;
 
-    public int getHeight() {
-        return height;
-    }
-
-    public int getWidth() {
-        return width;
-    }
-
-    public int[][] getTiles() {
-        return tiles;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
-
-    public void setWidth(int width) {
-        this.width = width;
-    }
 
     public void setTile(int height, int width, int value){
         tiles[height][width] = value;
@@ -42,10 +24,12 @@ public class Puzzle {
         this.tiles = new int[height][width];
     }
 
-    public Puzzle(Puzzle other) {
+    public Puzzle(Puzzle other, char direction) {
         this.height = other.getHeight();
         this.width = other.getWidth();
         this.tiles = Arrays.stream(other.getTiles()).map(int[]::clone).toArray(int[][]::new);
+        this.previousPuzzle = other;
+        this.previousMove = direction;
     }
 
     public int[] getZeroCoordinates() {
@@ -119,7 +103,7 @@ public class Puzzle {
     public void generatePuzzles(String order) {
         for (char direction : order.toCharArray()) {
             if (canMove(direction)) {
-                Puzzle other = new Puzzle(this);
+                Puzzle other = new Puzzle(this, direction);
                 other.move(direction);
                 possiblePuzzles.add(other);
             }
