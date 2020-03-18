@@ -2,7 +2,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.IOException;
-import java.util.AbstractCollection;
 import java.util.ArrayDeque;
 
 @Getter @Setter
@@ -12,10 +11,13 @@ public abstract class StrategyTemplate {
     private Puzzle solved;
     protected ArrayDeque<Puzzle> visited = new ArrayDeque<>();
     protected String previousMoves = "";
-
-    public StrategyTemplate(SolutionState state)
+    private String solutionFilepath;
+    private String statsFilepath;
+    public StrategyTemplate(SolutionState state, String solutionFilepath, String statsFilepath)
     {
         this.solutionState = state;
+        this.solutionFilepath = solutionFilepath;
+        this.statsFilepath = statsFilepath;
         solved = new Puzzle(state.getPuzzle().getHeight(),state.getPuzzle().getWidth());
         int height = solved.getHeight();
         int width = solved.getWidth();
@@ -33,7 +35,7 @@ public abstract class StrategyTemplate {
         algorithm(order);
         solutionState.setCalculationTime((System.nanoTime() - startTime) / 1000000);
         try {
-            FileOperations.saveSolutionState("txtFiles/stats",getSolutionState());
+            FileOperations.saveSolutionState(statsFilepath,getSolutionState());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -52,7 +54,7 @@ public abstract class StrategyTemplate {
         solutionState.setSolutionLength(previousMoves.length());
         sb.insert(0, previousMoves.length() + "\n");
         try {
-            FileOperations.saveSolutionMoves("txtFiles/solution.txt", sb.toString());
+            FileOperations.saveSolutionMoves(solutionFilepath, sb.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }

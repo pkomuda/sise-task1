@@ -2,8 +2,8 @@ import java.util.ArrayDeque;
 
 public class BFSStrategy extends StrategyTemplate {
     protected ArrayDeque<Puzzle> toVisit;
-    public BFSStrategy(SolutionState state) {
-        super(state);
+    public BFSStrategy(SolutionState state,String solutionFilepath,String statsFilepath) {
+        super(state,solutionFilepath,statsFilepath);
         this.toVisit = new ArrayDeque<>();
     }
 

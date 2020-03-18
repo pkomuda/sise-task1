@@ -1,10 +1,13 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Stack;
 
 public class DFSStrategy extends StrategyTemplate {
     private int MAX_DEPTH = 20;
     protected Stack<Puzzle> toVisit;
-    public DFSStrategy(SolutionState state){
-        super(state);
+    public DFSStrategy(SolutionState state,String solutionFilepath,String statsFilepath){
+        super(state,solutionFilepath,statsFilepath);
         this.toVisit = new Stack<>();
     }
 
@@ -24,10 +27,11 @@ public class DFSStrategy extends StrategyTemplate {
             }
             visited.add(checkedState);
             checkedState.generatePuzzles(order);
-            for (Puzzle p : checkedState.getPossiblePuzzles()) {
+            List<Puzzle> tempPuzzles = new ArrayList<Puzzle>(checkedState.getPossiblePuzzles());
+            Collections.reverse(tempPuzzles);
+            for (Puzzle p : tempPuzzles) {
                 if (!visited.contains(p)) {
                     toVisit.add(p);
-                    System.out.println(p);
                 }
             }
         }
