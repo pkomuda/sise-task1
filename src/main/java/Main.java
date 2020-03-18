@@ -3,7 +3,14 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        Puzzle puzzle = FileOperations.loadPuzzle("txtFiles/input.txt");
+        String chosenStrat = args[0];
+        String additionalParameter = args[1];
+        String inputFilename = args[2];
+        String solutionFilename = args[3];
+        String statsFilename = args[4];
+
+
+        Puzzle puzzle = FileOperations.loadPuzzle(inputFilename);
 
         SolutionState state = new SolutionState(puzzle);
 //        System.out.println(state.getPuzzle());
@@ -16,7 +23,7 @@ public class Main {
 //        bfs.runStrategy("RDUL");
 
         DFSStrategy dfs = new DFSStrategy(state);
-        dfs.runStrategy("RDUL");
+        dfs.runStrategy(additionalParameter);
 
 //        System.out.println(puzzle);
 //        System.out.println("GENERATED:");

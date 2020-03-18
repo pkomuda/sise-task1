@@ -19,7 +19,7 @@ public class BFSStrategy extends StrategyTemplate {
                 System.out.println(checkedState);
                 getSolutionState().setSolutionFound(true);
                 System.out.println(previousMoves);
-                return;
+                break;
             }
             checkedState.generatePuzzles(order);
             for (Puzzle p : checkedState.getPossiblePuzzles()) {

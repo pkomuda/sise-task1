@@ -20,7 +20,7 @@ public class DFSStrategy extends StrategyTemplate {
                 System.out.println(checkedState);
                 getSolutionState().setSolutionFound(true);
                 System.out.println(previousMoves);
-                return;
+                break;
             }
             visited.add(checkedState);
             checkedState.generatePuzzles(order);
