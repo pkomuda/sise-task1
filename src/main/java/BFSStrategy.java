@@ -1,5 +1,3 @@
-import java.io.IOException;
-import java.util.AbstractCollection;
 import java.util.ArrayDeque;
 
 public class BFSStrategy extends StrategyTemplate {
@@ -15,15 +13,13 @@ public class BFSStrategy extends StrategyTemplate {
         Puzzle checkedState = null;
         while(toVisit.size() > 0){
             checkedState = toVisit.pop();
-            if (checkedState.getDepth() > getSolutionState().getMaxDepthReached()){
-                getSolutionState().setMaxDepthReached(checkedState.getDepth());
-            }
+            adjustMaxDepth(checkedState);
             visited.add(checkedState);
             if (checkedState.equals(getSolved())) {
                 System.out.println(checkedState);
                 getSolutionState().setSolutionFound(true);
                 System.out.println(previousMoves);
-                break;
+                return;
             }
             checkedState.generatePuzzles(order);
             for (Puzzle p : checkedState.getPossiblePuzzles()) {
@@ -32,9 +28,7 @@ public class BFSStrategy extends StrategyTemplate {
                 }
             }
         }
-        if(!getSolutionState().isSolutionFound()){
-            getSolutionState().setSolutionLength(-1);
-        }
+        checkSolutionFound();
         solutionMoves(checkedState);
 
     }

@@ -57,4 +57,16 @@ public abstract class StrategyTemplate {
             e.printStackTrace();
         }
     }
+
+    public void adjustMaxDepth(Puzzle checkedState){
+        if (checkedState.getDepth() > getSolutionState().getMaxDepthReached()){
+            getSolutionState().setMaxDepthReached(checkedState.getDepth());
+        }
+    }
+
+    public void checkSolutionFound(){
+        if(!getSolutionState().isSolutionFound()){
+            getSolutionState().setSolutionLength(-1);
+        }
+    }
 }
