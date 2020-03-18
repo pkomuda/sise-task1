@@ -2,6 +2,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.IOException;
+import java.util.AbstractCollection;
 import java.util.ArrayDeque;
 
 @Getter @Setter
@@ -9,8 +10,7 @@ public abstract class StrategyTemplate {
 
     private SolutionState solutionState;
     private Puzzle solved;
-    ArrayDeque<Puzzle> toVisit = new ArrayDeque<>();
-    ArrayDeque<Puzzle> visited = new ArrayDeque<>();
+    protected ArrayDeque<Puzzle> visited = new ArrayDeque<>();
     protected String previousMoves = "";
 
     public StrategyTemplate(SolutionState state)

@@ -11,9 +11,12 @@ public class Main {
 //        System.out.println(puzzle);
 //        puzzle.move('D');
 //        System.out.println(puzzle);
+//
+//        BFSStrategy bfs = new BFSStrategy(state);
+//        bfs.runStrategy("RDUL");
 
-        BFSStrategy bfs = new BFSStrategy(state);
-        bfs.runStrategy("RDUL");
+        DFSStrategy dfs = new DFSStrategy(state);
+        dfs.runStrategy("RDUL");
 
 //        System.out.println(puzzle);
 //        System.out.println("GENERATED:");

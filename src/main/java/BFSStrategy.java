@@ -1,9 +1,12 @@
 import java.io.IOException;
+import java.util.AbstractCollection;
+import java.util.ArrayDeque;
 
 public class BFSStrategy extends StrategyTemplate {
-
+    protected ArrayDeque<Puzzle> toVisit;
     public BFSStrategy(SolutionState state) {
         super(state);
+        this.toVisit = new ArrayDeque<>();
     }
 
     @Override
@@ -26,7 +29,6 @@ public class BFSStrategy extends StrategyTemplate {
             for (Puzzle p : checkedState.getPossiblePuzzles()) {
                 if (!visited.contains(p)) {
                     toVisit.add(p);
-                    System.out.println(p);
                 }
             }
         }
