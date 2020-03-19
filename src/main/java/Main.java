@@ -11,7 +11,7 @@ public class Main {
 
         Puzzle puzzle = FileOperations.loadPuzzle(inputFilename);
         SolutionState state = new SolutionState(puzzle);
-        StrategyTemplate strategyTemplate;
+        StrategyTemplate strategyTemplate = null;
         switch (chosenStrat){
             case "bfs":{
                 strategyTemplate = new BFSStrategy(state,solutionFilename,statsFilename);
@@ -19,13 +19,13 @@ public class Main {
             case "dfs":{
                 strategyTemplate = new DFSStrategy(state,solutionFilename,statsFilename);
             }
-            case "astr"{
+            case "astr":{
                 // Tu pozostale jak juz beda
                 if(additionalParameter == "hamm"){
 
                 }
                 if(additionalParameter == "manh"){
-                    
+
                 }
             }
         }
