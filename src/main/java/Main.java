@@ -15,9 +15,11 @@ public class Main {
         switch (chosenStrat){
             case "bfs":{
                 strategyTemplate = new BFSStrategy(state,solutionFilename,statsFilename);
+                break;
             }
             case "dfs":{
                 strategyTemplate = new DFSStrategy(state,solutionFilename,statsFilename);
+                break;
             }
             case "astr":{
                 // Tu pozostale jak juz beda
@@ -27,6 +29,7 @@ public class Main {
                 if(additionalParameter == "manh"){
 
                 }
+                break;
             }
         }
 
