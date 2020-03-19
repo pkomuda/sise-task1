@@ -28,8 +28,7 @@ public class BFSStrategy extends StrategyTemplate {
                 }
             }
         }
-        checkSolutionFound();
-        solutionMoves(checkedState);
-
+        String moveHistory = getMoveHistory(checkedState);
+        serializeSolution(moveHistory);
     }
 }

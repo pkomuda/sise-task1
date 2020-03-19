@@ -41,7 +41,7 @@ public abstract class StrategyTemplate {
         }
     }
 
-    public void solutionMoves(Puzzle checkedState) {
+    public String getMoveHistory(Puzzle checkedState) {
         Puzzle newPuzzle = checkedState;
         previousMoves += newPuzzle.getPreviousMove();
         while (newPuzzle.getPreviousPuzzle() != null) {
@@ -49,16 +49,22 @@ public abstract class StrategyTemplate {
             previousMoves += newPuzzle.getPreviousMove();
         }
         previousMoves = previousMoves.substring(0, previousMoves.length() - 1);
+        solutionState.setSolutionLength(previousMoves.length());
+        return previousMoves;
+    }
+
+    public void serializeSolution(String previousMoves){
+        checkSolutionFound();
         StringBuilder sb = new StringBuilder(previousMoves);
         sb.reverse();
-        solutionState.setSolutionLength(previousMoves.length());
-        sb.insert(0, previousMoves.length() + "\n");
+        sb.insert(0, getSolutionState().getSolutionLength() + "\n");
         try {
             FileOperations.saveSolutionMoves(solutionFilepath, sb.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 
     public void adjustMaxDepth(Puzzle checkedState){
         if (checkedState.getDepth() > getSolutionState().getMaxDepthReached()){

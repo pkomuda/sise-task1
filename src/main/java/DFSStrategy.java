@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Stack;
 
 public class DFSStrategy extends StrategyTemplate {
-    private int MAX_DEPTH = 20;
+    private int MAX_DEPTH = 15;
     protected Stack<Puzzle> toVisit;
     public DFSStrategy(SolutionState state,String solutionFilepath,String statsFilepath){
         super(state,solutionFilepath,statsFilepath);
@@ -35,7 +35,7 @@ public class DFSStrategy extends StrategyTemplate {
                 }
             }
         }
-        checkSolutionFound();
-        solutionMoves(checkedState);
+        String moveHistory = getMoveHistory(checkedState);
+        serializeSolution(moveHistory);
     }
 }
