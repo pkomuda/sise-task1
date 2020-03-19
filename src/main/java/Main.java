@@ -9,14 +9,28 @@ public class Main {
         String solutionFilename = args[3];
         String statsFilename = args[4];
 
-
-
         Puzzle puzzle = FileOperations.loadPuzzle(inputFilename);
-
         SolutionState state = new SolutionState(puzzle);
+        StrategyTemplate strategyTemplate;
+        switch (chosenStrat){
+            case "bfs":{
+                strategyTemplate = new BFSStrategy(state,solutionFilename,statsFilename);
+            }
+            case "dfs":{
+                strategyTemplate = new DFSStrategy(state,solutionFilename,statsFilename);
+            }
+            case "astr"{
+                // Tu pozostale jak juz beda
+                if(additionalParameter == "hamm"){
 
-        DFSStrategy dfs = new DFSStrategy(state,solutionFilename,statsFilename);
-        dfs.runStrategy(additionalParameter);
+                }
+                if(additionalParameter == "manh"){
+                    
+                }
+            }
+        }
+
+        strategyTemplate.runStrategy(additionalParameter);
 
     }
 }
