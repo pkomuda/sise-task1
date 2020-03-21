@@ -8,7 +8,7 @@ import java.util.ArrayDeque;
 public abstract class StrategyTemplate {
 
     private SolutionState solutionState;
-    private Puzzle solved;
+    public static Puzzle solved;
     protected ArrayDeque<Puzzle> visited = new ArrayDeque<>();
     protected String previousMoves = "";
     private String solutionFilepath;

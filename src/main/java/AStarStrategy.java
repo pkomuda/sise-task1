@@ -2,51 +2,15 @@ import java.util.*;
 
 public class AStarStrategy extends StrategyTemplate {
 
-    private String additionalParameter;
-    protected ArrayDeque<Puzzle> toVisit;
+    protected PriorityQueue<Puzzle> toVisit;
 
     public AStarStrategy(SolutionState state, String solutionFilepath, String statsFilepath, String additionalParameter) {
         super(state,solutionFilepath,statsFilepath);
-        this.additionalParameter = additionalParameter;
-        this.toVisit = new ArrayDeque<>();
-    }
-
-    private int checkDistance(Puzzle currentState) {
-        int distance = 0;
-        if (additionalParameter.equals("hamm")){
-            for (int i = 0; i < currentState.getHeight(); i++) {
-                for (int j = 0; j < currentState.getWidth(); j++) {
-                    if (currentState.getTiles()[i][j] != getSolved().getTiles()[i][j]) {
-                        distance ++; //ilosc klockow nie na swoim miejscu
-                    }
-                }
-            }
+        if (additionalParameter.equals("hamm")) {
+            this.toVisit = new PriorityQueue<>(new HammingComparator());
         } else if (additionalParameter.equals("manh")) {
-            for (int i = 0; i < currentState.getHeight(); i++) {
-                for (int j = 0; j < currentState.getWidth(); j++) {
-                    if (currentState.getTiles()[j][i] != getSolved().getTiles()[j][i]) { //tutaj nie jestem pewien czy kolejnosc j,i jest dobrze xd
-                        int xSolved = getSolved().indexOf(getSolved().getTiles()[j][i])[0];
-                        int ySolved = getSolved().indexOf(getSolved().getTiles()[j][i])[1];
-                        distance += Math.abs(j - xSolved) + Math.abs(i - ySolved); //suma ruchow potrzebnych zeby przesunac kazdy klocek na swoje miejsce
-                    }
-                }
-            }
+            this.toVisit = new PriorityQueue<>(new ManhattanComparator());
         }
-        return distance;
-    }
-
-    private Puzzle bestUnvisitedPuzzle(ArrayDeque<Puzzle> possiblePuzzles, ArrayDeque<Puzzle> visited) {
-        Map<Puzzle, Integer> puzzlesAndHeuristics = new HashMap<>();
-        for (Puzzle p : possiblePuzzles) {
-            if (!visited.contains(p)) {
-                puzzlesAndHeuristics.put(p, checkDistance(p));
-            }
-        }
-        int minHeuristic = Collections.min(puzzlesAndHeuristics.values());
-        return puzzlesAndHeuristics.keySet()
-                .stream()
-                .filter(puzzle -> puzzlesAndHeuristics.get(puzzle) == minHeuristic)
-                .findFirst().get();
     }
 
     @Override
@@ -54,17 +18,21 @@ public class AStarStrategy extends StrategyTemplate {
         toVisit.add(getSolutionState().getPuzzle());
         Puzzle checkedState = null;
         while(toVisit.size() > 0) {
-            checkedState = toVisit.pop();
+            checkedState = toVisit.poll();
             adjustMaxDepth(checkedState);
             visited.add(checkedState);
-            if (checkedState.equals(getSolved())) {
+            if (checkedState.equals(StrategyTemplate.solved)) {
                 System.out.println(checkedState);
                 getSolutionState().setSolutionFound(true);
                 System.out.println(previousMoves);
                 break;
             }
             checkedState.generatePuzzles("UDRL"); //tutaj chyba musi byc zhardkodowana jakas kolejnosc bo nie podajemy jej w argumentach wywolania, nie powinno miec wiekszego znaczenia jaka ona bedzie
-            toVisit.add(Objects.requireNonNull(bestUnvisitedPuzzle(checkedState.getPossiblePuzzles(), visited)));
+            for (Puzzle p : checkedState.getPossiblePuzzles()) {
+                if (!visited.contains(p)) {
+                    toVisit.add(p);
+                }
+            }
         }
         String moveHistory = getMoveHistory(checkedState);
         serializeSolution(moveHistory);

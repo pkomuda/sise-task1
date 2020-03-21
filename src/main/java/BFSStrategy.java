@@ -15,7 +15,7 @@ public class BFSStrategy extends StrategyTemplate {
             checkedState = toVisit.pop();
             adjustMaxDepth(checkedState);
             visited.add(checkedState);
-            if (checkedState.equals(getSolved())) {
+            if (checkedState.equals(StrategyTemplate.solved)) {
                 System.out.println(checkedState);
                 getSolutionState().setSolutionFound(true);
                 System.out.println(previousMoves);

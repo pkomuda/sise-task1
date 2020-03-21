@@ -19,7 +19,7 @@ public class DFSStrategy extends StrategyTemplate {
             checkedState = toVisit.pop();
             adjustMaxDepth(checkedState);
             if (checkedState.getDepth() > MAX_DEPTH){ continue; } //moze byc cos dla kwestii z tym continue xd
-            if (checkedState.equals(getSolved())) {
+            if (checkedState.equals(StrategyTemplate.solved)) {
                 System.out.println(checkedState);
                 getSolutionState().setSolutionFound(true);
                 System.out.println(previousMoves);
