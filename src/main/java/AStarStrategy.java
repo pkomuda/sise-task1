@@ -22,9 +22,7 @@ public class AStarStrategy extends StrategyTemplate {
             adjustMaxDepth(checkedState);
             visited.add(checkedState);
             if (checkedState.equals(StrategyTemplate.solved)) {
-                System.out.println(checkedState);
                 getSolutionState().setSolutionFound(true);
-                System.out.println(previousMoves);
                 break;
             }
             checkedState.generatePuzzles("UDRL"); //tutaj chyba musi byc zhardkodowana jakas kolejnosc bo nie podajemy jej w argumentach wywolania, nie powinno miec wiekszego znaczenia jaka ona bedzie
