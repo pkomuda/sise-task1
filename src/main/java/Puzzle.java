@@ -39,8 +39,8 @@ public @Data class Puzzle {
         for (int i = 0; i < getHeight(); i++) {
             for (int j = 0; j < getWidth(); j++) {
                 if (getTiles()[i][j] == value) {
-                    coordinates[0] = j;
-                    coordinates[1] = i;
+                    coordinates[0] = i;
+                    coordinates[1] = j;
                 }
             }
         }
@@ -51,22 +51,22 @@ public @Data class Puzzle {
         boolean ability = true;
         switch(direction) {
             case 'L':
-                if (indexOf(0)[0] == 0) {
-                    ability = false;
-                }
-                break;
-            case 'R':
-                if (indexOf(0)[0] == getWidth() - 1) {
-                    ability = false;
-                }
-                break;
-            case 'U':
                 if (indexOf(0)[1] == 0) {
                     ability = false;
                 }
                 break;
+            case 'R':
+                if (indexOf(0)[1] == getWidth() - 1) {
+                    ability = false;
+                }
+                break;
+            case 'U':
+                if (indexOf(0)[0] == 0) {
+                    ability = false;
+                }
+                break;
             case 'D':
-                if (indexOf(0)[1] == getHeight() - 1) {
+                if (indexOf(0)[0] == getHeight() - 1) {
                     ability = false;
                 }
                 break;
@@ -84,8 +84,8 @@ public @Data class Puzzle {
     }
 
     public void move(char direction) {
-        int x = indexOf(0)[0];
-        int y = indexOf(0)[1];
+        int x = indexOf(0)[1];
+        int y = indexOf(0)[0];
         switch(direction) {
             case 'L':
                 swapTiles(x, y, x - 1, y);
