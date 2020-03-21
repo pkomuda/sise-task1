@@ -4,12 +4,12 @@ public class ManhattanComparator implements Comparator<Puzzle> {
 
     private int checkDistance(Puzzle currentState) {
         int distance = 0;
-        for (int i = 0; i < currentState.getHeight(); i++) {
-            for (int j = 0; j < currentState.getWidth(); j++) {
+        for (int i = 0; i < currentState.getHeight(); i++) {    //numer wiersza
+            for (int j = 0; j < currentState.getWidth(); j++) { // numer kolumny
                 if (currentState.getTiles()[i][j] != StrategyTemplate.solved.getTiles()[i][j]) {
-                    int xSolved = StrategyTemplate.solved.indexOf(StrategyTemplate.solved.getTiles()[i][j])[0];
-                    int ySolved = StrategyTemplate.solved.indexOf(StrategyTemplate.solved.getTiles()[i][j])[1];
-                    distance += Math.abs(j - xSolved) + Math.abs(i - ySolved); //suma ruchow potrzebnych zeby przesunac kazdy klocek na swoje miejsce
+                    int xSolved = StrategyTemplate.solved.indexOf(StrategyTemplate.solved.getTiles()[i][j])[0]; // 0 - kolumna
+                    int ySolved = StrategyTemplate.solved.indexOf(StrategyTemplate.solved.getTiles()[i][j])[1]; // 1 - wiersz
+                    distance += Math.abs(i - xSolved) + Math.abs(j - ySolved); //suma ruchow potrzebnych zeby przesunac kazdy klocek na swoje miejsce
                 }
             }
         }
