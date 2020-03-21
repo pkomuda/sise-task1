@@ -18,7 +18,7 @@ public class DFSStrategy extends StrategyTemplate {
         while (toVisit.size() > 0) {
             checkedState = toVisit.pop();
             adjustMaxDepth(checkedState);
-            if (checkedState.getDepth() > MAX_DEPTH){ continue; }
+            if (checkedState.getDepth() > MAX_DEPTH){ continue; } //moze byc cos dla kwestii z tym continue xd
             if (checkedState.equals(getSolved())) {
                 System.out.println(checkedState);
                 getSolutionState().setSolutionFound(true);
@@ -27,7 +27,7 @@ public class DFSStrategy extends StrategyTemplate {
             }
             visited.add(checkedState);
             checkedState.generatePuzzles(order);
-            List<Puzzle> tempPuzzles = new ArrayList<Puzzle>(checkedState.getPossiblePuzzles());
+            List<Puzzle> tempPuzzles = new ArrayList<>(checkedState.getPossiblePuzzles());
             Collections.reverse(tempPuzzles);
             for (Puzzle p : tempPuzzles) {
                 if (!visited.contains(p)) {

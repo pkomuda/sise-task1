@@ -8,10 +8,10 @@ public class BFSStrategy extends StrategyTemplate {
     }
 
     @Override
-    public void algorithm(String order){
+    public void algorithm(String order) {
         toVisit.add(getSolutionState().getPuzzle());
         Puzzle checkedState = null;
-        while(toVisit.size() > 0){
+        while (toVisit.size() > 0) {
             checkedState = toVisit.pop();
             adjustMaxDepth(checkedState);
             visited.add(checkedState);
