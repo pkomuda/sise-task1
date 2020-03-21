@@ -19,6 +19,10 @@ public @Data class SolutionState {
         StringBuilder sb = new StringBuilder();
         sb.append(solutionLength);
         sb.append("\n");
+        sb.append('0');
+        sb.append("\n");
+        sb.append('0');
+        sb.append("\n");
         sb.append(maxDepthReached);
         sb.append("\n");
         sb.append(calculationTime);

@@ -22,11 +22,7 @@ public class Main {
                 break;
             }
             case "astr":{
-                if (additionalParameter.equals("hamm")){
                     strategyTemplate = new AStarStrategy(state, solutionFilename, statsFilename, additionalParameter);
-                } else if (additionalParameter.equals("manh")){
-                    strategyTemplate = new AStarStrategy(state, solutionFilename, statsFilename, additionalParameter);
-                }
                 break;
             }
         }
