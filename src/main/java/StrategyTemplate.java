@@ -3,13 +3,14 @@ import lombok.Setter;
 
 import java.io.IOException;
 import java.util.ArrayDeque;
+import java.util.HashSet;
 
 @Getter @Setter
 public abstract class StrategyTemplate {
 
     private SolutionState solutionState;
     public static Puzzle solved;
-    protected ArrayDeque<Puzzle> visited = new ArrayDeque<>();
+    protected HashSet<Puzzle> visited = new HashSet<>();
     protected String previousMoves = "";
     private String solutionFilepath;
     private String statsFilepath;
