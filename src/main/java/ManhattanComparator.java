@@ -7,13 +7,13 @@ public class ManhattanComparator implements Comparator<Puzzle> {
         for (int i = 0; i < currentState.getHeight(); i++) {    //numer wiersza
             for (int j = 0; j < currentState.getWidth(); j++) { // numer kolumny
                 if (currentState.getTiles()[i][j] != StrategyTemplate.solved.getTiles()[i][j]) {
-                    int solved0 = StrategyTemplate.solved.indexOf(StrategyTemplate.solved.getTiles()[i][j])[0]; // 0 - kolumna
-                    int solved1 = StrategyTemplate.solved.indexOf(StrategyTemplate.solved.getTiles()[i][j])[1]; // 1 - wiersz
-                    distance += Math.abs(j - solved0) + Math.abs(i - solved1); //suma ruchow potrzebnych zeby przesunac kazdy klocek na swoje miejsce
+                    int ySolved = StrategyTemplate.solved.indexOf(StrategyTemplate.solved.getTiles()[i][j])[0]; // 0 - kolumna
+                    int xSolved = StrategyTemplate.solved.indexOf(StrategyTemplate.solved.getTiles()[i][j])[1]; // 1 - wiersz
+                    distance += Math.abs(i - ySolved) + Math.abs(j - xSolved); //suma ruchow potrzebnych zeby przesunac kazdy klocek na swoje miejsce
                 }
             }
         }
-        return distance;
+        return distance + currentState.getDepth();
     }
 
     @Override

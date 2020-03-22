@@ -11,7 +11,7 @@ public class HammingComparator implements Comparator<Puzzle> {
                 }
             }
         }
-        return distance;
+        return distance + currentState.getDepth();
     }
 
     @Override
