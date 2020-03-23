@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.PriorityQueue;
 
 public class AStarStrategy extends StrategyTemplate {
 
@@ -25,7 +25,7 @@ public class AStarStrategy extends StrategyTemplate {
                 getSolutionState().setSolutionFound(true);
                 break;
             }
-            checkedState.generatePuzzles("UDRL"); //tutaj chyba musi byc zhardkodowana jakas kolejnosc bo nie podajemy jej w argumentach wywolania, nie powinno miec wiekszego znaczenia jaka ona bedzie
+            checkedState.generatePuzzles("UDRL");
             for (Puzzle p : checkedState.getPossiblePuzzles()) {
                 if (!visited.contains(p)) {
                     toVisit.add(p);
